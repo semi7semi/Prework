@@ -10,8 +10,6 @@ WL = [5, 6, 3]
 FW = [5, 4, 1]
 SM = [6, 5, 2]
 
-print("----------------WL, FW, SM")
-
 
 def hit1(off, deff, att):
     if off > deff:
@@ -27,24 +25,28 @@ def hit2(off, deff, att, ref):
     else:
         test1 = att * (1 / 2 + ref / 6)
     return test1
+
+
 HIT = [hit1(WL[0], DEF, ATT_WL), hit2(FW[0], DEF, ATT_FW, REFLEX), hit2(SM[0], DEF, ATT_SM, REFLEX)]
 
-print("----Trafienia:", HIT[0], HIT[1], HIT[2])
+print("----------------WL, FW, SM")
+print("----Trafienia:", round(HIT[0], 1), round(HIT[1], 1), round(HIT[2], 1))
 print("---------------------------")
 
 
-def wound(str, res, test11):
-        if str - res >= 2:
+def wound(st, res, test11):
+        if st - res >= 2:
             test2 = test11 * 5 / 6
-        elif 2 > str - res >= 1:
+        elif 2 > st - res >= 1:
             test2 = test11 * 2 / 3
-        elif 1 > str - res >= 0:
+        elif 1 > st - res >= 0:
             test2 = test11 / 2
-        elif 0 > str - res >= -1:
+        elif 0 > st - res >= -1:
             test2 = test11 / 3
         else:
             test2 = test11 / 6
         return(round(test2, 1))
+
 
 for RES in range(3, 7):
     WOUND = [wound(WL[1], RES, HIT[0]), wound(FW[1], RES, HIT[1]), wound(SM[1], RES, HIT[2])]
@@ -68,6 +70,7 @@ for RES in range(3, 7):
 
 
     for ARM in range(6):
-        print(f"------Arm {7 - ARM}+ :", armour(WL[2], ARM, WOUND[0]), armour(FW[2], ARM, WOUND[1]), armour(SM[2], ARM, WOUND[2]))
+        print(f"------Arm {7 - ARM}+ :",
+              armour(WL[2], ARM, WOUND[0]), armour(FW[2], ARM, WOUND[1]), armour(SM[2], ARM, WOUND[2]))
     print("--------------------------")
-#input("Nacisnij ENTER aby zakonczyc:")
+#  input("Nacisnij ENTER aby zakonczyc:")
