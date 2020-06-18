@@ -1,2 +1,2 @@
-# Prework
-Przygotowanie do kursu
+# Moje
+Zabawa kodem.
