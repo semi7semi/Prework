@@ -7,4 +7,4 @@ Zabawa kodem.
 
 #3 wfb_def.py - wfb2 z def
 
-#4 fibonacci.py - przedstawienie ciagu Fibonacciego rulez.
+#4 fibb.py - przedstawienie ciagu Fibonacciego rulez.
