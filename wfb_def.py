@@ -1,33 +1,23 @@
 DEF = int(input("podaj def: "))
-REFLEX = int(input("Relfexy: 1, Distracting: -1, Brak: 0 - "))
 ATT_WL = int(input("ataki WL: "))
 ATT_FW = int(input("ataki FW: "))
 ATT_SM = int(input("ataki SM: "))
 
-
-# OFF, STR, AP
-WL = [5, 6, 3]
-FW = [5, 4, 1]
-SM = [6, 5, 2]
-
-
-def hit1(off, deff, att):
-    if off > deff:
-        test1 = att * 2 / 3
-    else:
-        test1 = att / 2
-    return test1
+# OFF, STR, AP, RFX
+WL = [5, 6, 3, 0]
+FW = [5, 4, 1, 1]
+SM = [6, 5, 2, 1]
 
 
-def hit2(off, deff, att, ref):
-    if off > deff:
+def hit(off, defe, att, ref):
+    if off > defe:
         test1 = att * (2 / 3 + ref / 6)
     else:
         test1 = att * (1 / 2 + ref / 6)
     return test1
 
 
-HIT = [hit1(WL[0], DEF, ATT_WL), hit2(FW[0], DEF, ATT_FW, REFLEX), hit2(SM[0], DEF, ATT_SM, REFLEX)]
+HIT = [hit(WL[0], DEF, ATT_WL, WL[3]), hit(FW[0], DEF, ATT_FW, FW[3]), hit(SM[0], DEF, ATT_SM, SM[3])]
 
 print("----------------WL, FW, SM")
 print("----Trafienia:", round(HIT[0], 1), round(HIT[1], 1), round(HIT[2], 1))
@@ -35,17 +25,17 @@ print("---------------------------")
 
 
 def wound(st, res, test11):
-        if st - res >= 2:
-            test2 = test11 * 5 / 6
-        elif 2 > st - res >= 1:
-            test2 = test11 * 2 / 3
-        elif 1 > st - res >= 0:
-            test2 = test11 / 2
-        elif 0 > st - res >= -1:
-            test2 = test11 / 3
-        else:
-            test2 = test11 / 6
-        return(round(test2, 1))
+    if st - res >= 2:
+        test2 = test11 * 5 / 6
+    elif 2 > st - res >= 1:
+        test2 = test11 * 2 / 3
+    elif 1 > st - res >= 0:
+        test2 = test11 / 2
+    elif 0 > st - res >= -1:
+        test2 = test11 / 3
+    else:
+        test2 = test11 / 6
+    return round(test2, 1)
 
 
 for RES in range(3, 7):
@@ -68,9 +58,16 @@ for RES in range(3, 7):
             test3 = test111 / 6
         return round(test3, 1)
 
-
     for ARM in range(6):
-        print(f"------Arm {7 - ARM}+ :",
-              armour(WL[2], ARM, WOUND[0]), armour(FW[2], ARM, WOUND[1]), armour(SM[2], ARM, WOUND[2]))
+        if 7 - ARM == 7:
+            print(
+                f"----Arm none :",
+                armour(WL[2], ARM, WOUND[0]), armour(FW[2], ARM, WOUND[1]), armour(SM[2], ARM, WOUND[2])
+                )
+        else:
+            print(
+                f"------Arm {7 - ARM}+ :",
+                armour(WL[2], ARM, WOUND[0]), armour(FW[2], ARM, WOUND[1]), armour(SM[2], ARM, WOUND[2])
+            )
     print("--------------------------")
-#  input("Nacisnij ENTER aby zakonczyc:")
+    #  input("Nacisnij ENTER aby zakonczyc:")
